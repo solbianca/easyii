@@ -1,4 +1,4 @@
-## EasyiiCMS1 ##
+## EasyiiCMS123456 ##
 
 Control panel and tools based on php framework Yii2. Easy cms for easy websites.
 
