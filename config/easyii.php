@@ -14,9 +14,8 @@ return [
                 'admin/<controller:\w+>/<action:[\w-]+>/<id:\d+>' => 'admin/<controller>/<action>',
                 'admin/<module:\w+>/<controller:\w+>/<action:[\w-]+>/<id:\d+>' => 'admin/<module>/<controller>/<action>'
             ],
-         ],
+        ],
         'user' => [
-            'identityClass' => 'yii\easyii\models\Admin',
             'enableAutoLogin' => true,
             'authTimeout' => 86400,
         ],
