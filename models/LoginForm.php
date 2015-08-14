@@ -15,7 +15,7 @@ class LoginForm extends ActiveRecord
 
     public static function tableName()
     {
-        return 'easyii_loginform';
+        return '{{%loginform}}';
     }
 
     public function rules()
@@ -51,8 +51,9 @@ class LoginForm extends ActiveRecord
     {
         $cache = Yii::$app->cache;
 
-        if(($tries = (int)$cache->get(self::CACHE_KEY)) > 5){
+        if (($tries = (int)$cache->get(self::CACHE_KEY)) > 5) {
             $this->addError('username', Yii::t('easyii', 'You tried to login too often. Please wait 5 minutes.'));
+
             return false;
         }
 
@@ -69,7 +70,7 @@ class LoginForm extends ActiveRecord
         }
         $this->insert(false);
 
-        return $this->success ? Yii::$app->user->login($this->getUser(), Setting::get('auth_time') ?: null ) : false;
+        return $this->success ? Yii::$app->user->login($this->getUser(), Setting::get('auth_time') ?: null) : false;
 
     }
 

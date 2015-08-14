@@ -12,7 +12,7 @@ class Photo extends \yii\easyii\components\ActiveRecord
 
     public static function tableName()
     {
-        return 'easyii_photos';
+        return '{{%photos}}';
     }
 
     public function rules()
@@ -36,6 +36,6 @@ class Photo extends \yii\easyii\components\ActiveRecord
     {
         parent::afterDelete();
 
-        @unlink(Yii::getAlias('@webroot').$this->image);
+        @unlink(Yii::getAlias('@webroot') . $this->image);
     }
 }

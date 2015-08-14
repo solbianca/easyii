@@ -15,7 +15,7 @@ class Admin extends \yii\easyii\components\ActiveRecord implements \yii\web\Iden
 
     public static function tableName()
     {
-        return 'easyii_admins';
+        return '{{%admins}}';
     }
 
     public function rules()
@@ -46,6 +46,7 @@ class Admin extends \yii\easyii\components\ActiveRecord implements \yii\web\Iden
             } else {
                 $this->password = $this->password != '' ? $this->hashPassword($this->password) : $this->oldAttributes['password'];
             }
+
             return true;
         } else {
             return false;
@@ -61,6 +62,7 @@ class Admin extends \yii\easyii\components\ActiveRecord implements \yii\web\Iden
                 : static::findOne($id);
         } catch (\yii\base\InvalidConfigException $e) {
         }
+
         return $result;
     }
 
@@ -74,6 +76,7 @@ class Admin extends \yii\easyii\components\ActiveRecord implements \yii\web\Iden
         if ($username === self::$rootUser['username']) {
             return static::createRootUser();
         }
+
         return static::findOne(['username' => $username]);
     }
 

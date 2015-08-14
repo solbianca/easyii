@@ -12,7 +12,7 @@ class Setting extends \yii\easyii\components\ActiveRecord
     const VISIBLE_ROOT = 1;
     const VISIBLE_ALL = 2;
 
-    const CACHE_KEY = 'easyii_settings';
+    const CACHE_KEY = '{{%settings}}';
 
     static $_data;
 
@@ -26,7 +26,7 @@ class Setting extends \yii\easyii\components\ActiveRecord
         return [
             [['name', 'title', 'value'], 'required'],
             [['name', 'title', 'value'], 'trim'],
-            ['name',  'match', 'pattern' => '/^[a-zA-Z][\w_-]*$/'],
+            ['name', 'match', 'pattern' => '/^[a-zA-Z][\w_-]*$/'],
             ['name', 'unique'],
             ['visibility', 'number', 'integerOnly' => true]
         ];
@@ -51,23 +51,26 @@ class Setting extends \yii\easyii\components\ActiveRecord
 
     public static function get($name)
     {
-        if(!self::$_data){
-            self::$_data =  Data::cache(self::CACHE_KEY, 3600, function(){
+        if (!self::$_data) {
+            self::$_data = Data::cache(self::CACHE_KEY, 3600, function () {
                 $result = [];
                 try {
                     foreach (parent::find()->all() as $setting) {
                         $result[$setting->name] = $setting->value;
                     }
-                }catch(\yii\db\Exception $e){}
+                } catch (\yii\db\Exception $e) {
+                }
+
                 return $result;
             });
         }
+
         return isset(self::$_data[$name]) ? self::$_data[$name] : null;
     }
 
     public static function set($name, $value)
     {
-        if(self::get($name)){
+        if (self::get($name)) {
             $setting = Setting::find()->where(['name' => $name])->one();
             $setting->value = $value;
         } else {
