@@ -12,13 +12,13 @@ class Setting extends \yii\easyii\components\ActiveRecord
     const VISIBLE_ROOT = 1;
     const VISIBLE_ALL = 2;
 
-    const CACHE_KEY = '{{%settings}}';
+    const CACHE_KEY = 'easyii_settings';
 
     static $_data;
 
     public static function tableName()
     {
-        return 'easyii_settings';
+        return '{{%settings}}';
     }
 
     public function rules()
