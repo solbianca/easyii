@@ -57,6 +57,11 @@ $moduleName = $this->context->module->id;
                             <?php endif; ?>
                         </a>
                     <?php endforeach; ?>
+                    <a href="<?= Url::to(['/admin/catalog/genre']) ?>"
+                       class="menu-item <?= ($moduleName == 'admin' && $this->context->id == 'settings') ? 'active' : '' ?>">
+                        <i class="glyphicon glyphicon-facetime-video"></i>
+                        Genre
+                    </a>
                     <a href="<?= Url::to(['/admin/settings']) ?>"
                        class="menu-item <?= ($moduleName == 'admin' && $this->context->id == 'settings') ? 'active' : '' ?>">
                         <i class="glyphicon glyphicon-cog"></i>
