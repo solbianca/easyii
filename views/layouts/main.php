@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\easyii\assets\AdminAsset;
+use app\widgets\filemanager\Filemanager;
 
 $asset = AdminAsset::register($this);
 $moduleName = $this->context->module->id;
@@ -62,6 +63,7 @@ $moduleName = $this->context->module->id;
                         <i class="glyphicon glyphicon-facetime-video"></i>
                         Genre
                     </a>
+                    <?= Filemanager::widget() ?>
                     <a href="<?= Url::to(['/admin/settings']) ?>"
                        class="menu-item <?= ($moduleName == 'admin' && $this->context->id == 'settings') ? 'active' : '' ?>">
                         <i class="glyphicon glyphicon-cog"></i>
