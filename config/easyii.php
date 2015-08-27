@@ -13,7 +13,7 @@ return [
             'rules' => [
                 'admin/<controller:\w+>/<action:[\w-]+>/<id:\d+>' => 'admin/<controller>/<action>',
                 'admin/<module:\w+>/<controller:\w+>/<action:[\w-]+>' => 'admin/<module:\w+>/<controller>/<action>',
-                'admin/<module:\w+>/<controller:\w+>/<action:[\w-]+>/<id:\d+>' => 'admin/<module>/<controller>/<action>'
+                'admin/<module:\w+>/<controller:\w+>/<action:[\w-]+>/<id:\d+>' => 'admin/<module>/<controller>/<action>',
             ],
         ],
         'user' => [
