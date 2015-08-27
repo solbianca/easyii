@@ -39,27 +39,36 @@ $moduleName = $this->context->module->id;
                     <a href="<?= Url::to(['/user/logout']) ?>" class="pull-right">
                         <i class="glyphicon glyphicon-log-out"></i> <?= Yii::t('easyii', 'Logout') ?>
                     </a>
-                    <!--                    <a href="-->
-                    <? //= Url::to(['/admin/sign/out']) ?><!--" class="pull-right"><i class="glyphicon glyphicon-log-out"></i> -->
-                    <? //= Yii::t('easyii', 'Logout') ?><!--</a>-->
                 </div>
             </div>
             <div class="main">
                 <div class="box sidebar">
-                    <?php foreach (Yii::$app->getModule('admin')->activeModules as $module) : ?>
-                        <a href="<?= Url::to(["/admin/$module->name"]) ?>"
-                           class="menu-item <?= ($moduleName == $module->name ? 'active' : '') ?>">
-                            <?php if ($module->icon != '') : ?>
-                                <i class="glyphicon glyphicon-<?= $module->icon ?>"></i>
-                            <?php endif; ?>
-                            <?= $module->title ?>
-                            <?php if ($module->notice > 0) : ?>
-                                <span class="badge"><?= $module->notice ?></span>
-                            <?php endif; ?>
-                        </a>
-                    <?php endforeach; ?>
+                    <?php
+                    $pageActive = '';
+                    $page = Yii::$app->getModule('admin')->activeModules['page'];
+                    if ($moduleName === $page->name) {
+                        $pageActive = 'active';
+                    }
+                    ?>
+                    <a href="<?= Url::to(['/admin/page']) ?>"
+                       class="menu-item <?= $pageActive ?>">
+                        <i class="glyphicon glyphicon-<?= $page->icon ?>"></i>
+                        <?= $page->title ?>
+                    </a>
+                    <?php
+                    $catalogActive = '';
+                    $catalog = Yii::$app->getModule('admin')->activeModules['catalog'];
+                    if ($moduleName === $catalog->name AND $this->context->id !== 'genre') {
+                        $catalogActive = 'active';
+                    }
+                    ?>
+                    <a href="<?= Url::to(['/admin/catalog/a/index']) ?>"
+                       class="menu-item <?= $catalogActive ?>">
+                        <i class="glyphicon glyphicon-<?= $catalog->icon ?>"></i>
+                        <?= $catalog->title ?>
+                    </a>
                     <a href="<?= Url::to(['/admin/catalog/genre']) ?>"
-                       class="menu-item <?= ($moduleName == 'admin' && $this->context->id == 'settings') ? 'active' : '' ?>">
+                       class="menu-item <?= ($this->context->id === 'genre') ? 'active' : '' ?>">
                         <i class="glyphicon glyphicon-facetime-video"></i>
                         Genre
                     </a>
