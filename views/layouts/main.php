@@ -72,7 +72,6 @@ $moduleName = $this->context->module->id;
                         <i class="glyphicon glyphicon-facetime-video"></i>
                         Genre
                     </a>
-                    <?= Filemanager::widget() ?>
                     <a href="<?= Url::to(['/admin/settings']) ?>"
                        class="menu-item <?= ($moduleName == 'admin' && $this->context->id == 'settings') ? 'active' : '' ?>">
                         <i class="glyphicon glyphicon-cog"></i>
