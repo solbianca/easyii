@@ -3,6 +3,7 @@ namespace yii\easyii\controllers;
 
 use Yii;
 use yii\helpers\Url;
+use yii\helpers\VarDumper;
 use yii\web\UploadedFile;
 use yii\web\Response;
 
@@ -38,11 +39,11 @@ class PhotosController extends Controller
         $photo->item_id = $item_id;
         $photo->image = UploadedFile::getInstance($photo, 'image');
 
-        if($photo->image && $photo->validate(['image'])){
+        if ($photo->image && $photo->validate(['image'])) {
             $photo->image = Image::upload($photo->image, 'photos', Photo::PHOTO_MAX_WIDTH);
 
-            if($photo->image){
-                if($photo->save()){
+            if ($photo->image) {
+                if ($photo->save()) {
                     $success = [
                         'message' => Yii::t('easyii', 'Photo uploaded'),
                         'photo' => [
@@ -52,17 +53,14 @@ class PhotosController extends Controller
                             'description' => ''
                         ]
                     ];
-                }
-                else{
+                } else {
                     @unlink(Yii::getAlias('@webroot') . str_replace(Url::base(true), '', $photo->image));
                     $this->error = Yii::t('easyii', 'Create error. {0}', $photo->formatErrors());
                 }
-            }
-            else{
+            } else {
                 $this->error = Yii::t('easyii', 'File upload error. Check uploads folder for write permissions');
             }
-        }
-        else{
+        } else {
             $this->error = Yii::t('easyii', 'File is incorrect');
         }
 
@@ -71,20 +69,16 @@ class PhotosController extends Controller
 
     public function actionDescription($id)
     {
-        if(($model = Photo::findOne($id)))
-        {
-            if(Yii::$app->request->post('description'))
-            {
+        if (($model = Photo::findOne($id))) {
+            if (Yii::$app->request->post('description')) {
                 $model->description = Yii::$app->request->post('description');
-                if(!$model->update()) {
+                if (!$model->update()) {
                     $this->error = Yii::t('easyii', 'Update error. {0}', $model->formatErrors());
                 }
-            }
-            else{
+            } else {
                 $this->error = Yii::t('easyii', 'Bad response');
             }
-        }
-        else{
+        } else {
             $this->error = Yii::t('easyii', 'Not found');
         }
 
@@ -95,43 +89,39 @@ class PhotosController extends Controller
     {
         $success = null;
 
-        if(($photo = Photo::findOne($id)))
-        {
+        if (($photo = Photo::findOne($id))) {
             $oldImage = $photo->image;
 
             $photo->image = UploadedFile::getInstance($photo, 'image');
 
-            if($photo->image && $photo->validate(['image'])){
+            if ($photo->image && $photo->validate(['image'])) {
                 $photo->image = Image::upload($photo->image, 'photos', Photo::PHOTO_MAX_WIDTH);
-                if($photo->image){
-                    if($photo->save()){
-                        @unlink(Yii::getAlias('@webroot').$oldImage);
+                if ($photo->image) {
+                    if ($photo->save()) {
+                        @unlink(Yii::getAlias('@webroot') . $oldImage);
 
                         $success = [
                             'message' => Yii::t('easyii', 'Photo uploaded'),
                             'photo' => [
                                 'image' => $photo->image,
-                                'thumb' => Image::thumb($photo->image, Photo::PHOTO_THUMB_WIDTH, Photo::PHOTO_THUMB_HEIGHT)
+                                'thumb' => Image::thumb($photo->image, Photo::PHOTO_THUMB_WIDTH,
+                                    Photo::PHOTO_THUMB_HEIGHT)
                             ]
                         ];
-                    }
-                    else{
-                        @unlink(Yii::getAlias('@webroot').$photo->image);
+                    } else {
+                        @unlink(Yii::getAlias('@webroot') . $photo->image);
 
                         $this->error = Yii::t('easyii', 'Update error. {0}', $photo->formatErrors());
                     }
-                }
-                else{
+                } else {
                     $this->error = Yii::t('easyii', 'File upload error. Check uploads folder for write permissions');
                 }
-            }
-            else{
+            } else {
                 $this->error = Yii::t('easyii', 'File is incorrect');
             }
 
-        }
-        else{
-            $this->error =  Yii::t('easyii', 'Not found');
+        } else {
+            $this->error = Yii::t('easyii', 'Not found');
         }
 
         return $this->formatResponse($success);
@@ -139,11 +129,12 @@ class PhotosController extends Controller
 
     public function actionDelete($id)
     {
-        if(($model = Photo::findOne($id))){
+        if (($model = Photo::findOne($id))) {
             $model->delete();
         } else {
             $this->error = Yii::t('easyii', 'Not found');
         }
+
         return $this->formatResponse(Yii::t('easyii', 'Photo deleted'));
     }
 

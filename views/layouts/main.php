@@ -72,7 +72,11 @@ $moduleName = $this->context->module->id;
                         <i class="glyphicon glyphicon-facetime-video"></i>
                         Genre
                     </a>
-                    <?= Filemanager::widget() ?>
+                    <a href="<?= Url::to(['/admin/user/client/index']) ?>"
+                       class="menu-item <?= ($this->context->id === 'client') ? 'active' : '' ?>">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <?= Yii::t('easyii', 'Clients') ?>
+                    </a>
                     <a href="<?= Url::to(['/admin/settings']) ?>"
                        class="menu-item <?= ($moduleName == 'admin' && $this->context->id == 'settings') ? 'active' : '' ?>">
                         <i class="glyphicon glyphicon-cog"></i>

@@ -81,6 +81,7 @@ class Setting extends \yii\easyii\components\ActiveRecord
                 'visibility' => self::VISIBLE_NONE
             ]);
         }
-        $setting->save();
+
+        return $setting->save();
     }
 }
