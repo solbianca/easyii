@@ -67,6 +67,21 @@ $moduleName = $this->context->module->id;
                         <i class="glyphicon glyphicon-<?= $catalog->icon ?>"></i>
                         <?= $catalog->title ?>
                     </a>
+                    <?php
+                    $shopcartActive = '';
+                    $shopcart = Yii::$app->getModule('admin')->activeModules['shopcart'];
+                    if ($moduleName === $shopcart->name AND $this->context->id !== 'genre') {
+                        $shopcartActive = 'active';
+                    }
+                    ?>
+                    <a href="<?= Url::to(['/admin/shopcart']) ?>"
+                       class="menu-item <?= $shopcartActive ?>">
+                        <i class="glyphicon glyphicon-<?= $shopcart->icon ?>"></i>
+                        <?= $shopcart->title ?>
+                        <?php if ($shopcart->notice > 0) : ?>
+                            <span class="badge"><?= $shopcart->notice ?></span>
+                        <?php endif; ?>
+                    </a>
                     <a href="<?= Url::to(['/admin/catalog/genre']) ?>"
                        class="menu-item <?= ($this->context->id === 'genre') ? 'active' : '' ?>">
                         <i class="glyphicon glyphicon-facetime-video"></i>
