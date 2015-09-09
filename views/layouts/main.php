@@ -33,9 +33,9 @@ $moduleName = $this->context->module->id;
                     <a href="<?= Url::to(['/']) ?>" class="pull-left">
                         <i class="glyphicon glyphicon-home"></i> <?= Yii::t('easyii', 'Open site') ?>
                     </a>
-                    <a href="<?= Url::to(['/user/admin']) ?>" class="pull-right">
-                        <i class="glyphicon glyphicon-user"></i> <?= Yii::t('easyii', 'Admin') ?>
-                    </a>
+                    <!--<a href="<? //= Url::to(['/user/admin']) ?>" class="pull-right">
+                        <i class="glyphicon glyphicon-user"></i> <? //= Yii::t('easyii', 'Admin') ?>
+                    </a>-->
                     <a href="<?= Url::to(['/user/logout']) ?>" class="pull-right">
                         <i class="glyphicon glyphicon-log-out"></i> <?= Yii::t('easyii', 'Logout') ?>
                     </a>
@@ -119,6 +119,8 @@ $moduleName = $this->context->module->id;
                             <div class="alert alert-<?= $key ?>"><?= $message ?></div>
                         <?php endforeach; ?>
                         <?= $content ?>
+                        <hr/>
+                        <hr/>
                     </div>
                 </div>
             </div>
