@@ -2,7 +2,6 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\easyii\assets\AdminAsset;
-use app\widgets\filemanager\Filemanager;
 
 $asset = AdminAsset::register($this);
 $moduleName = $this->context->module->id;
@@ -91,11 +90,6 @@ $moduleName = $this->context->module->id;
                        class="menu-item <?= ($this->context->id === 'client') ? 'active' : '' ?>">
                         <i class="glyphicon glyphicon-user"></i>
                         <?= Yii::t('easyii', 'Clients') ?>
-                    </a>
-                    <a href="<?= Url::to(['/admin/settings']) ?>"
-                       class="menu-item <?= ($moduleName == 'admin' && $this->context->id == 'settings') ? 'active' : '' ?>">
-                        <i class="glyphicon glyphicon-cog"></i>
-                        <?= Yii::t('easyii', 'Settings') ?>
                     </a>
                     <?php if (IS_ROOT) : ?>
                         <a href="<?= Url::to(['/admin/modules']) ?>"
