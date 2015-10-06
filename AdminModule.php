@@ -47,17 +47,17 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface
     {
         Yii::setAlias('easyii', '@vendor/noumo/easyii');
 
-        if (!$app->user->isGuest && strpos($app->request->pathInfo, 'admin') === false) {
-            $app->on(Application::EVENT_BEFORE_REQUEST, function () use ($app) {
-                $app->getView()->on(View::EVENT_BEGIN_BODY, [$this, 'renderToolbar']);
-            });
-        }
+//        if (!$app->user->isGuest && strpos($app->request->pathInfo, 'admin') === false) {
+//            $app->on(Application::EVENT_BEFORE_REQUEST, function () use ($app) {
+//                $app->getView()->on(View::EVENT_BEGIN_BODY, [$this, 'renderToolbar']);
+//            });
+//        }
     }
 
     public function renderToolbar()
     {
-        $view = Yii::$app->getView();
-        echo $view->render('@easyii/views/layouts/frontend-toolbar.php');
+//        $view = Yii::$app->getView();
+//        echo $view->render('@easyii/views/layouts/frontend-toolbar.php');
     }
 
     public function getInstalled()

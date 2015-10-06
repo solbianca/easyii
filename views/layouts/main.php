@@ -25,16 +25,12 @@ $moduleName = $this->context->module->id;
         <div class="wrapper">
             <div class="header">
                 <div class="logo">
-                    <img src="<?= $asset->baseUrl ?>/img/logo_20.png">
-                    EasyiiCMS
+                    <img src="<?= $asset->baseUrl ?>/img/b-header__logo.png" style="width: 60px">
                 </div>
                 <div class="nav">
                     <a href="<?= Url::to(['/']) ?>" class="pull-left">
                         <i class="glyphicon glyphicon-home"></i> <?= Yii::t('easyii', 'Open site') ?>
                     </a>
-                    <!--<a href="<? //= Url::to(['/user/admin']) ?>" class="pull-right">
-                        <i class="glyphicon glyphicon-user"></i> <? //= Yii::t('easyii', 'Admin') ?>
-                    </a>-->
                     <a href="<?= Url::to(['/user/logout']) ?>" class="pull-right">
                         <i class="glyphicon glyphicon-log-out"></i> <?= Yii::t('easyii', 'Logout') ?>
                     </a>
@@ -42,18 +38,6 @@ $moduleName = $this->context->module->id;
             </div>
             <div class="main">
                 <div class="box sidebar">
-                    <?php
-                    $pageActive = '';
-                    $page = Yii::$app->getModule('admin')->activeModules['page'];
-                    if ($moduleName === $page->name) {
-                        $pageActive = 'active';
-                    }
-                    ?>
-                    <a href="<?= Url::to(['/admin/page']) ?>"
-                       class="menu-item <?= $pageActive ?>">
-                        <i class="glyphicon glyphicon-<?= $page->icon ?>"></i>
-                        <?= $page->title ?>
-                    </a>
                     <?php
                     $catalogActive = '';
                     $catalog = Yii::$app->getModule('admin')->activeModules['catalog'];
@@ -64,7 +48,7 @@ $moduleName = $this->context->module->id;
                     <a href="<?= Url::to(['/admin/catalog/a/index']) ?>"
                        class="menu-item <?= $catalogActive ?>">
                         <i class="glyphicon glyphicon-<?= $catalog->icon ?>"></i>
-                        <?= $catalog->title ?>
+                        Каталог
                     </a>
                     <?php
                     $shopcartActive = '';
@@ -73,36 +57,16 @@ $moduleName = $this->context->module->id;
                         $shopcartActive = 'active';
                     }
                     ?>
-                    <a href="<?= Url::to(['/admin/shopcart']) ?>"
-                       class="menu-item <?= $shopcartActive ?>">
-                        <i class="glyphicon glyphicon-<?= $shopcart->icon ?>"></i>
-                        <?= $shopcart->title ?>
-                        <?php if ($shopcart->notice > 0) : ?>
-                            <span class="badge"><?= $shopcart->notice ?></span>
-                        <?php endif; ?>
-                    </a>
                     <a href="<?= Url::to(['/admin/catalog/genre']) ?>"
                        class="menu-item <?= ($this->context->id === 'genre') ? 'active' : '' ?>">
                         <i class="glyphicon glyphicon-facetime-video"></i>
-                        Genre
+                        Настройки
                     </a>
                     <a href="<?= Url::to(['/admin/user/client/index']) ?>"
                        class="menu-item <?= ($this->context->id === 'client') ? 'active' : '' ?>">
                         <i class="glyphicon glyphicon-user"></i>
-                        <?= Yii::t('easyii', 'Clients') ?>
+                        Клиенты
                     </a>
-                    <?php if (IS_ROOT) : ?>
-                        <a href="<?= Url::to(['/admin/modules']) ?>"
-                           class="menu-item <?= ($moduleName == 'admin' && $this->context->id == 'modules') ? 'active' : '' ?>">
-                            <i class="glyphicon glyphicon-folder-close"></i>
-                            <?= Yii::t('easyii', 'Modules') ?>
-                        </a>
-                        <a href="<?= Url::to(['/admin/system']) ?>"
-                           class="menu-item <?= ($moduleName == 'admin' && $this->context->id == 'system') ? 'active' : '' ?>">
-                            <i class="glyphicon glyphicon-hdd"></i>
-                            <?= Yii::t('easyii', 'System') ?>
-                        </a>
-                    <?php endif; ?>
                 </div>
                 <div class="box content">
                     <div class="page-title">
@@ -113,7 +77,6 @@ $moduleName = $this->context->module->id;
                             <div class="alert alert-<?= $key ?>"><?= $message ?></div>
                         <?php endforeach; ?>
                         <?= $content ?>
-                        <hr/>
                         <hr/>
                     </div>
                 </div>

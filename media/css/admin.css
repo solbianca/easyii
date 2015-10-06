@@ -2,6 +2,10 @@ html {
     overflow-y: scroll;
 }
 
+#admin-body .container {
+
+}
+
 #admin-body {
     font-family: 'Open Sans', sans-serif;
     background: #f0f3f3;
@@ -59,7 +63,7 @@ html {
 /*--------------- LEFT MENU ---------------*/
 #admin-body .sidebar {
     background: #1d212a;
-    width: 220px;
+    width: 160px;
     padding: 0;
     vertical-align: top;
 }
@@ -119,6 +123,7 @@ html {
 #admin-body .main a, #admin-body .main .btn, #admin-body .main .form-control, .input-group-addon {
     border-radius: 0 !important;
     text-align: left;
+    margin-bottom: 4px;
 }
 
 #admin-body .table {
