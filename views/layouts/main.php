@@ -57,6 +57,16 @@ $moduleName = $this->context->module->id;
                         $shopcartActive = 'active';
                     }
                     ?>
+                    <a href="<?= Url::to(['/admin/news/default/index']) ?>"
+                       class="menu-item <?= ($this->context->id === 'news') ? 'active' : '' ?>">
+                        <i class="glyphicon glyphicon-bullhorn"></i>
+                        Новости
+                    </a>
+                    <a href="<?= Url::to(['/admin/logs/default/index']) ?>"
+                       class="menu-item <?= ($this->context->id === 'news') ? 'active' : '' ?>">
+                        <i class="glyphicon glyphicon-copy"></i>
+                        Логи
+                    </a>
                     <a href="<?= Url::to(['/admin/catalog/genre']) ?>"
                        class="menu-item <?= ($this->context->id === 'genre') ? 'active' : '' ?>">
                         <i class="glyphicon glyphicon-facetime-video"></i>

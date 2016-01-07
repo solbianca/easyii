@@ -36,7 +36,7 @@ class Module extends \yii\base\Module
         parent::init();
 
         $moduleName = self::getModuleName(self::className());
-        self::registerTranslations($moduleName);
+//        self::registerTranslations($moduleName);
     }
 
     /**
