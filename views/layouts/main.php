@@ -62,6 +62,11 @@ $moduleName = $this->context->module->id;
                         <i class="glyphicon glyphicon-bullhorn"></i>
                         Новости
                     </a>
+                    <a href="<?= Url::to(['/admin/equipment/default/index']) ?>"
+                       class="menu-item <?= ($this->context->id === 'equipment') ? 'active' : '' ?>">
+                        <i class="glyphicon glyphicon-facetime-video"></i>
+                        Оборудование
+                    </a>
                     <a href="<?= Url::to(['/admin/logs/default/index']) ?>"
                        class="menu-item <?= ($this->context->id === 'news') ? 'active' : '' ?>">
                         <i class="glyphicon glyphicon-copy"></i>
