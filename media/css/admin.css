@@ -261,3 +261,7 @@ h4 b {
 .pointer {
     cursor: pointer;
 }
+
+.record-deleted {
+    opacity: 0.5;
+}
