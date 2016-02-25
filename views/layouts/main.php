@@ -45,11 +45,13 @@ $moduleName = $this->context->module->id;
                         $catalogActive = 'active';
                     }
                     ?>
-                    <a href="<?= Url::to(['/admin/catalog/a/index']) ?>"
-                       class="menu-item <?= $catalogActive ?>">
-                        <i class="glyphicon glyphicon-<?= $catalog->icon ?>"></i>
-                        Каталог
-                    </a>
+                    <?php if (Yii::$app->user->can('LinkToCatalog')): ?>
+                        <a href="<?= Url::to(['/admin/catalog/a/index']) ?>"
+                           class="menu-item <?= $catalogActive ?>">
+                            <i class="glyphicon glyphicon-<?= $catalog->icon ?>"></i>
+                            <?= Yii::t('app', 'Catalog') ?>
+                        </a>
+                    <?php endif; ?>
                     <?php
                     $shopcartActive = '';
                     $shopcart = Yii::$app->getModule('admin')->activeModules['shopcart'];
@@ -57,31 +59,41 @@ $moduleName = $this->context->module->id;
                         $shopcartActive = 'active';
                     }
                     ?>
-                    <a href="<?= Url::to(['/admin/news/default/index']) ?>"
-                       class="menu-item <?= ($this->context->id === 'news') ? 'active' : '' ?>">
-                        <i class="glyphicon glyphicon-bullhorn"></i>
-                        Новости
-                    </a>
-                    <a href="<?= Url::to(['/admin/equipment/default/index']) ?>"
-                       class="menu-item <?= ($this->context->id === 'equipment') ? 'active' : '' ?>">
-                        <i class="glyphicon glyphicon-facetime-video"></i>
-                        Оборудование
-                    </a>
-                    <a href="<?= Url::to(['/admin/logs/default/index']) ?>"
-                       class="menu-item <?= ($this->context->id === 'news') ? 'active' : '' ?>">
-                        <i class="glyphicon glyphicon-copy"></i>
-                        Логи
-                    </a>
-                    <a href="<?= Url::to(['/admin/catalog/genre']) ?>"
-                       class="menu-item <?= ($this->context->id === 'genre') ? 'active' : '' ?>">
-                        <i class="glyphicon glyphicon-facetime-video"></i>
-                        Настройки
-                    </a>
-                    <a href="<?= Url::to(['/admin/user/client/index']) ?>"
-                       class="menu-item <?= ($this->context->id === 'client') ? 'active' : '' ?>">
-                        <i class="glyphicon glyphicon-user"></i>
-                        Клиенты
-                    </a>
+                    <?php if (Yii::$app->user->can('LinkToNews')): ?>
+                        <a href="<?= Url::to(['/admin/news/default/index']) ?>"
+                           class="menu-item <?= ($moduleName === 'news') ? 'active' : '' ?>">
+                            <i class="glyphicon glyphicon-bullhorn"></i>
+                            <?= Yii::t('app', 'News') ?>
+                        </a>
+                    <?php endif; ?>
+                    <?php if (Yii::$app->user->can('LinkToEquipment')): ?>
+                        <a href="<?= Url::to(['/admin/equipment/default/index']) ?>"
+                           class="menu-item <?= ($moduleName === 'equipment') ? 'active' : '' ?>">
+                            <i class="glyphicon glyphicon-facetime-video"></i>
+                            <?= Yii::t('app', 'Equipment') ?>
+                        </a>
+                    <?php endif; ?>
+                    <?php if (Yii::$app->user->can('LinkToLogs')): ?>
+                        <a href="<?= Url::to(['/admin/logs/default/index']) ?>"
+                           class="menu-item <?= ($moduleName === 'logs') ? 'active' : '' ?>">
+                            <i class="glyphicon glyphicon-copy"></i>
+                            <?= Yii::t('app', 'Logs') ?>
+                        </a>
+                    <?php endif; ?>
+                    <?php if (Yii::$app->user->can('LinkToSettings')): ?>
+                        <a href="<?= Url::to(['/admin/catalog/genre']) ?>"
+                           class="menu-item <?= ($this->context->id === 'genre') ? 'active' : '' ?>">
+                            <i class="glyphicon glyphicon-facetime-video"></i>
+                            <?= Yii::t('app', 'Settings') ?>
+                        </a>
+                    <?php endif; ?>
+                    <?php if (Yii::$app->user->can('LinkToClients')): ?>
+                        <a href="<?= Url::to(['/admin/user/client/index']) ?>"
+                           class="menu-item <?= ($this->context->id === 'client') ? 'active' : '' ?>">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <?= Yii::t('app', 'Clients') ?>
+                        </a>
+                    <?php endif; ?>
                 </div>
                 <div class="box content">
                     <div class="page-title">
