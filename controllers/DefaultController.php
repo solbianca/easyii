@@ -3,6 +3,8 @@ namespace yii\easyii\controllers;
 
 use app\components\Controller;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
+use Yii;
 
 class DefaultController extends Controller
 {
@@ -19,6 +21,14 @@ class DefaultController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'actions' => ['index'],
+                        'matchCallback' => function ($rule, $action) {
+                            $roles = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
+                            if (0 < count($roles)) {
+                                return true;
+                            } else {
+                                throw new ForbiddenHttpException('You are not allowed to access this page');
+                            }
+                        }
                     ]
                 ],
             ],

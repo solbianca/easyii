@@ -73,13 +73,6 @@ $moduleName = $this->context->module->id;
                             <?= Yii::t('app', 'Equipment') ?>
                         </a>
                     <?php endif; ?>
-                    <?php if (Yii::$app->user->can('LinkToLogs')): ?>
-                        <a href="<?= Url::to(['/admin/logs/default/index']) ?>"
-                           class="menu-item <?= ($moduleName === 'logs') ? 'active' : '' ?>">
-                            <i class="glyphicon glyphicon-copy"></i>
-                            <?= Yii::t('app', 'Logs') ?>
-                        </a>
-                    <?php endif; ?>
                     <?php if (Yii::$app->user->can('LinkToSettings')): ?>
                         <a href="<?= Url::to(['/admin/catalog/genre']) ?>"
                            class="menu-item <?= ($this->context->id === 'genre') ? 'active' : '' ?>">
@@ -92,6 +85,13 @@ $moduleName = $this->context->module->id;
                            class="menu-item <?= ($this->context->id === 'client') ? 'active' : '' ?>">
                             <i class="glyphicon glyphicon-user"></i>
                             <?= Yii::t('app', 'Clients') ?>
+                        </a>
+                    <?php endif; ?>
+                    <?php if (Yii::$app->user->can('LinkToLogs')): ?>
+                        <a href="<?= Url::to(['/admin/logs/default/index']) ?>"
+                           class="menu-item <?= ($moduleName === 'logs') ? 'active' : '' ?>">
+                            <i class="glyphicon glyphicon-copy"></i>
+                            <?= Yii::t('app', 'Logs') ?>
                         </a>
                     <?php endif; ?>
                 </div>
